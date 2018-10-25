@@ -45,7 +45,7 @@ export default class CreateBook extends Component {
       return <div>Please select an Image for Preview</div>;
     }
 
-    return <img src={ imagePreviewUrl } alt="Your book's cover image."/>;
+    return <img src={ imagePreviewUrl } alt="Your book&#39;s cover image."/>;
   }
 
   render() {
