@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import books from './bookData';
+import bookData from './bookData';
+
+const displayedBooksSelector = () => {
+  const bookIds = Object.keys(bookData);
+
+  return bookIds.map((id) => bookData[id]);
+}
 
 const EmptyView = () => (
   <div>
@@ -22,6 +28,8 @@ const Book = function Book({ book }) {
 };
 
 export const Books = () => {
+  const books = displayedBooksSelector();
+
   if(!books.length) {
     return <EmptyView />;
   }
