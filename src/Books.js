@@ -16,7 +16,7 @@ const EmptyView = () => (
 );
 
 const Book = function Book({ book }) {
-  const { category, id, imagePreviewUrl, title } = book;
+  const { category, id, image: imagePreviewUrl, title } = book;
 
   return (
     <li>

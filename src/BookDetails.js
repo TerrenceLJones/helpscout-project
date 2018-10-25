@@ -13,7 +13,7 @@ export const BookDetails = ({ match, history }) => {
     return <UnknownBook />;
   }
 
-  const { category, id, imagePreviewUrl, title } = book;
+  const { category, id, image: imagePreviewUrl, title } = book;
 
   return (
     <div>
