@@ -16,13 +16,15 @@ const EmptyView = () => (
 );
 
 const Book = function Book({ book }) {
-  const { category, imagePreviewUrl, title } = book;
+  const { category, id, imagePreviewUrl, title } = book;
 
   return (
     <li>
-      <h3>{ title }</h3>
-      <p>{ category }</p>
-      <img src={ imagePreviewUrl } alt="Your book&#39;s cover image."/>
+      <Link to={ `/books/${id}` }>
+        <h3>{ title }</h3>
+        <p>{ category }</p>
+        <img src={ imagePreviewUrl } alt="Your book&#39;s cover image."/>
+      </Link>
     </li>
   )
 };
