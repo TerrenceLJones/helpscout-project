@@ -1,14 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import books from './bookData';
+import { UnknownBook } from 'components/UnknownBook';
 
-const UnknownBook = () => (
-  <div>
-    <p>Oops! It seems like this book couldn&#39;t be found.</p>
-    <Link to="/books">Go to Book List</Link>
-  </div>
-);
+import books from 'data/bookData';
 
 export const BookDetails = ({ match, history }) => {
   const bookId = match.params.id;
@@ -18,7 +13,7 @@ export const BookDetails = ({ match, history }) => {
     return <UnknownBook />;
   }
 
-  const { category, id, imagePreviewUrl, title } = book;
+  const { category, id, image: imagePreviewUrl, title } = book;
 
   return (
     <div>

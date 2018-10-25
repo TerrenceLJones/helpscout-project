@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Books } from './Books';
-import { BookDetails } from './BookDetails';
-import CreateBook from './CreateBook';
+import { Books } from 'pages/Books';
+import { BookDetails } from 'pages/BookDetails';
+import CreateBook from 'pages/CreateBook';
+import EditBook from 'pages/EditBook';
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
             <Route exact path="/books" component={ Books } />
+            <Route path='/books/new' component={ CreateBook } />
+            <Route path="/books/:id/edit" component={ EditBook } />
             <Route path="/books/:id" component={ BookDetails } />
-            <Route path='/create' component={ CreateBook } />
         </Switch>
       </BrowserRouter>
     );

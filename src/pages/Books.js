@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import bookData from './bookData';
+
+import bookData from 'data/bookData';
 
 const displayedBooksSelector = () => {
   const bookIds = Object.keys(bookData);
@@ -11,12 +12,12 @@ const displayedBooksSelector = () => {
 const EmptyView = () => (
   <div>
     <h1>You haven&#39;t created any books yet.</h1>
-    <Link to="/create">Create a new book</Link>
+    <Link to="/books/new">Create a new book</Link>
   </div>
 );
 
 const Book = function Book({ book }) {
-  const { category, id, imagePreviewUrl, title } = book;
+  const { category, id, image: imagePreviewUrl, title } = book;
 
   return (
     <li>
@@ -37,8 +38,15 @@ export const Books = () => {
   }
 
   return (
-    <ol>
-      { books.map(book => <Book key={ book.id } book={ book }/>) }
-    </ol>
+    <div>
+      <header>
+        <h1>Book Library</h1>
+        <Link to="/books/new">New book</Link>
+      </header>
+
+      <ol>
+        { books.map(book => <Book key={ book.id } book={ book }/>) }
+      </ol>
+    </div>
   );
 };
