@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import bookData from './bookData';
+
+import bookData from 'data/bookData';
 
 const displayedBooksSelector = () => {
   const bookIds = Object.keys(bookData);

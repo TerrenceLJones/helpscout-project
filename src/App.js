@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Books } from './Books';
-import { BookDetails } from './BookDetails';
-import CreateBook from './CreateBook';
-import EditBook from './EditBook';
+import { Books } from 'pages/Books';
+import { BookDetails } from 'pages/BookDetails';
+import CreateBook from 'pages/CreateBook';
+import EditBook from 'pages/EditBook';
 
 class App extends Component {
   render() {

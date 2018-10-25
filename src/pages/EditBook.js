@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { UnknownBook } from './UnknownBook';
-import EditBookForm from './BookForm';
+import { UnknownBook } from 'components/UnknownBook';
+import EditBookForm from 'components/BookForm';
 
-import books from './bookData';
+import books from 'data/bookData';
 
 export default class CreateBook extends Component {
   state = {}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { UnknownBook } from './UnknownBook';
+import { UnknownBook } from 'components/UnknownBook';
 
-import books from './bookData';
+import books from 'data/bookData';
 
 export const BookDetails = ({ match, history }) => {
   const bookId = match.params.id;
