@@ -43,8 +43,45 @@ const loadOne = id => {
   });
 }
 
+const updateBook = data => {
+  return new Promise((resolve, reject) => {
+    const parsedData = JSON.parse(localStorage.getItem('bookData'));
+    const foundItem = parsedData.find((dataEntry) => dataEntry.id === data.id);
+
+    setTimeout(() => {
+      if(!foundItem) {
+        reject('Not found.')
+      }
+
+      const updatedItem = { ...foundItem, ...data };
+
+      localStorage.setItem('bookData', JSON.stringify({
+        ...parsedData,
+        [updatedItem.id]: updatedItem
+      }));
+
+      resolve(updatedItem);
+    }, 2000)
+  });
+};
+
+const deleteBook = id => {
+
+  return new Promise((resolve, reject) => {
+    const parsedData = JSON.parse(localStorage.getItem('bookData'));
+    const filteredData = parsedData.filter((dataEntry) => dataEntry.id !== id);
+
+    setTimeout(() => {
+      localStorage.setItem('bookData', JSON.stringify({ ...filteredData }));
+      resolve();
+    }, 2000)
+  });
+};
+
 export {
   createBook,
+  updateBook,
+  deleteBook,
   loadAll,
   loadOne
 };
