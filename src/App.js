@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Books } from 'pages/Books';
-import { BookDetails } from 'pages/BookDetails';
-import CreateBook from 'pages/CreateBook';
-import EditBook from 'pages/EditBook';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom'
+
+import bootStrapData from 'data/bookData';
+
+import configureStore from 'state/configureStore';
+
+import PageManager from 'components/PageManager';
+
+localStorage.setItem('bookData', JSON.stringify(bootStrapData));
+
+const store = configureStore();
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-            <Route exact path="/books" component={ Books } />
-            <Route path='/books/new' component={ CreateBook } />
-            <Route path="/books/:id/edit" component={ EditBook } />
-            <Route path="/books/:id" component={ BookDetails } />
-        </Switch>
+        <Provider store={store}>
+          <PageManager />
+        </Provider>
       </BrowserRouter>
     );
   }
