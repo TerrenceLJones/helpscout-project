@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import ListBooks from 'pages/listBooks';
 import BookDetails from 'pages/bookDetails';
 import CreateBook from 'pages/createBook';
-import EditBook from 'pages/EditBook';
-
+import EditBook from 'pages/editBook';
 
 const PageManager = () => {
   return (
