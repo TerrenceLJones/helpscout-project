@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { createBook, loadAll } from 'helpers/api';
+import { createBook, loadAll, loadOne } from 'helpers/api';
 
 const types = {
   CREATE_BOOK_REQUEST: 'CREATE_BOOK_REQUEST',
@@ -9,6 +9,9 @@ const types = {
   LOAD_BOOKS_REQUEST: 'LOAD_BOOKS_REQUEST',
   LOAD_BOOKS_SUCCESS: 'LOAD_BOOKS_SUCCESS',
   LOAD_BOOKS_FAILURE: 'LOAD_BOOKS_FAILURE',
+  LOAD_BOOK_REQUEST: 'LOAD_BOOK_REQUEST',
+  LOAD_BOOK_SUCCESS: 'LOAD_BOOK_SUCCESS',
+  LOAD_BOOK_FAILURE: 'LOAD_BOOK_FAILURE'
 };
 
 const initialState = {
@@ -31,6 +34,13 @@ const reducer = (state = initialState, { payload, type } = {}) => {
       return {
         byId: _.keyBy(books, 'id')
       };
+    case types.LOAD_BOOK_SUCCESS:
+      return {
+        byId: {
+          ...state.byId,
+          [payload.data.book.id]: payload.data.book
+        }
+      };
     default:
       return state;
   }
@@ -46,6 +56,11 @@ const actions = {
     return loadAll()
       .then(res => dispatch(actions.loadBooksSuccess(res)))
       .catch(error => dispatch(actions.loadBooksFailure(error)))
+  },
+  loadBook: (bookId) => dispatch => {
+    return loadOne(bookId)
+      .then(res => dispatch(actions.loadBookSuccess(res)))
+      .catch(error => dispatch(actions.loadBookFailure(error)))
   },
   createBookSuccess: newBook => ({
     type: types.CREATE_BOOK_SUCCESS,
@@ -72,10 +87,27 @@ const actions = {
     payload: {
       error
     }
+  }),
+  loadBookSuccess: book => ({
+    type: types.LOAD_BOOK_SUCCESS,
+    payload: {
+      data: {
+        book
+      }
+    }
+  }),
+  loadBookFailure: error => ({
+    type: types.LOAD_BOOK_FAILURE,
+    payload: {
+      error
+    }
   })
 };
 
 const selectors = {
+  getBookSelector(state, bookId) {
+    return state.books.byId[bookId];
+  },
   getBooksSelector(state) {
     const booksByIdState = state.books.byId;
     const bookIds = Object.keys(booksByIdState);
