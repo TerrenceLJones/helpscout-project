@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
-export default class BookForm extends Component {
+const BookForm = class BookForm extends Component {
   static propTypes = {
-    book: PropTypes.object
+    book: PropTypes.object,
+    handleSubmit: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func
   }
 
   state = {
@@ -22,6 +23,7 @@ export default class BookForm extends Component {
       this.setState({
         category: book.category,
         id: book.id,
+        image: book.image,
         imagePreviewUrl: book.image,
         title: book.title
       });
@@ -42,7 +44,7 @@ export default class BookForm extends Component {
 
     reader.onloadend = () => {
       this.setState({
-        image: file,
+        image: reader.result,
         imagePreviewUrl: reader.result
       });
     }
@@ -50,25 +52,10 @@ export default class BookForm extends Component {
     reader.readAsDataURL(file)
   }
 
-  handleSubmit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
-    console.log('handleSubmit', this.state);
-  }
 
-  handleDeleteBook = (e) => {
-    e.preventDefault();
-    console.log('handleDeleteBook', this.state);
-  }
-
-  getHeader() {
-    const headerText = this.state.id ? 'Edit Book' : 'Create a New Book';
-
-    return (
-      <header>
-        <h1>{ headerText }</h1>
-        <Link to={ `/books/${this.state.id}` }>Cancel</Link>
-      </header>
-    );
+    this.props.handleSubmit(this.state);
   }
 
   getImagePreview = () => {
@@ -78,7 +65,7 @@ export default class BookForm extends Component {
       return <div>Please select an Image for Preview</div>;
     }
 
-    return <img src={ imagePreviewUrl } alt="Your book&#39;s cover image."/>;
+    return <img src={ imagePreviewUrl } alt="Your book&#39;s cover."/>;
   }
 
   getSaveButton() {
@@ -94,15 +81,18 @@ export default class BookForm extends Component {
       return null;
     }
 
-    return <button type="button" onClick={ this.handleDeleteBook }>Delete</button>;
+    return (
+      <button
+        type="button"
+        onClick={ () => this.props.handleDelete(this.state.id) }>
+        Delete
+      </button>);
   }
 
   render() {
     return (
       <div>
-        { this.getHeader() }
-
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.onSubmit }>
 
           <label htmlFor="title">Title</label>
           <input
@@ -136,3 +126,9 @@ export default class BookForm extends Component {
     );
   }
 }
+
+export {
+  BookForm
+}
+
+export default BookForm;
