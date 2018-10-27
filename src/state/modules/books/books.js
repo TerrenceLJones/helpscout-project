@@ -104,13 +104,13 @@ const actions = {
     }
   }),
   updateBookSuccess: newBook => ({
-    type: types.CREATE_BOOK_SUCCESS,
+    type: types.UPDATE_BOOK_SUCCESS,
     payload: {
       data: newBook
     }
   }),
   updateBookFailure: error => ({
-    type: types.CREATE_BOOK_FAILURE,
+    type: types.UPDATE_BOOK_FAILURE,
     payload: {
       error
     }
