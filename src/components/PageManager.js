@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Books } from 'pages/Books';
 import { BookDetails } from 'pages/BookDetails';
-import CreateBook from 'pages/CreateBook';
+import CreateBook from 'pages/createBook';
 import EditBook from 'pages/EditBook';
 
 
