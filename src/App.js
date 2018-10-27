@@ -8,7 +8,12 @@ import configureStore from 'state/configureStore';
 
 import PageManager from 'components/PageManager';
 
-localStorage.setItem('bookData', JSON.stringify(bootStrapData));
+const hasData = !!localStorage.getItem('bookData')
+
+// Only set `bookData` if not previously set
+if(!hasData) {
+  localStorage.setItem('bookData', JSON.stringify(bootStrapData));
+}
 
 const store = configureStore();
 
