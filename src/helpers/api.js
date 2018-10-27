@@ -1,17 +1,18 @@
+import _ from 'lodash';
 import { v1 as uuid } from 'uuid';
 
 const createBook = data => {
-  const parsedbookData = JSON.parse(localStorage.getItem('bookData'));
+  // Fetch data from localStorage or set to empty array
+  const parsedbookData = JSON.parse(localStorage.getItem('bookData')) || [];
   const newItem = {
     ...data,
     id: uuid(),
     createdAt: Date.now()
   };
 
-  localStorage.setItem('bookData', JSON.stringify({
-    ...parsedbookData,
-    [newItem.id]: newItem
-  }));
+  const updateData = [...parsedbookData, newItem ];
+
+  localStorage.setItem('bookData', JSON.stringify(updateData));
 
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(newItem), 1000)
@@ -46,7 +47,8 @@ const loadOne = id => {
 const updateBook = data => {
   return new Promise((resolve, reject) => {
     const parsedData = JSON.parse(localStorage.getItem('bookData'));
-    const foundItem = parsedData.find((dataEntry) => dataEntry.id === data.id);
+    const foundItemIndex = _.findIndex(parsedData, dataEntry => dataEntry.id === data.id);
+    const foundItem = parsedData[foundItemIndex];
 
     setTimeout(() => {
       if(!foundItem) {
@@ -54,11 +56,10 @@ const updateBook = data => {
       }
 
       const updatedItem = { ...foundItem, ...data };
+      const updatedData = [ ...parsedData ];
+      updatedData[foundItemIndex] = updatedItem
 
-      localStorage.setItem('bookData', JSON.stringify({
-        ...parsedData,
-        [updatedItem.id]: updatedItem
-      }));
+      localStorage.setItem('bookData', JSON.stringify(updatedData));
 
       resolve(updatedItem);
     }, 2000)
@@ -66,7 +67,6 @@ const updateBook = data => {
 };
 
 const deleteBook = id => {
-
   return new Promise((resolve, reject) => {
     const parsedData = JSON.parse(localStorage.getItem('bookData'));
     const filteredData = parsedData.filter((dataEntry) => dataEntry.id !== id);
