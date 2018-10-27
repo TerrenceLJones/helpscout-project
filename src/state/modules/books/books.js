@@ -1,11 +1,17 @@
 import _ from 'lodash';
 
-import { createBook, loadAll, loadOne } from 'helpers/api';
+import { createBook, updateBook, deleteBook, loadAll, loadOne } from 'helpers/api';
 
 const types = {
   CREATE_BOOK_REQUEST: 'CREATE_BOOK_REQUEST',
   CREATE_BOOK_SUCCESS: 'CREATE_BOOK_SUCCESS',
   CREATE_BOOK_FAILURE: 'CREATE_BOOK_FAILURE',
+  UPDATE_BOOK_REQUEST: 'UPDATE_BOOK_REQUEST',
+  UPDATE_BOOK_SUCCESS: 'UPDATE_BOOK_SUCCESS',
+  UPDATE_BOOK_FAILURE: 'UPDATE_BOOK_FAILURE',
+  DELETE_BOOK_REQUEST: 'DELETE_BOOK_REQUEST',
+  DELETE_BOOK_SUCCESS: 'DELETE_BOOK_SUCCESS',
+  DELETE_BOOK_FAILURE: 'DELETE_BOOK_FAILURE',
   LOAD_BOOKS_REQUEST: 'LOAD_BOOKS_REQUEST',
   LOAD_BOOKS_SUCCESS: 'LOAD_BOOKS_SUCCESS',
   LOAD_BOOKS_FAILURE: 'LOAD_BOOKS_FAILURE',
@@ -27,6 +33,19 @@ const reducer = (state = initialState, { payload, type } = {}) => {
           ...state.byId,
           [payload.data.id]: payload.data
         }
+      };
+    case types.UPDATE_BOOK_SUCCESS:
+      return {
+        byId: {
+          ...state.byId,
+          [payload.data.id]: payload.data
+        }
+      };
+    case types.DELETE_BOOK_SUCCESS:
+      const { [payload.data.id]: value, ...restOfBooks } = state.byId;
+
+      return {
+        byId: restOfBooks
       };
     case types.LOAD_BOOKS_SUCCESS:
       const { books } = payload.data;
@@ -52,6 +71,16 @@ const actions = {
       .then(res => dispatch(actions.createBookSuccess(res)))
       .catch(error => dispatch(actions.createBookFailure(error)));
   },
+  updateBook: bookData => dispatch => {
+    return updateBook(bookData)
+      .then(res => dispatch(actions.updateBookSuccess(res)))
+      .catch(error => dispatch(actions.updateBookFailure(error)));
+  },
+  deleteBook: bookId => dispatch => {
+    return deleteBook(bookId)
+      .then(res => dispatch(actions.deleteBookSuccess(res)))
+      .catch(error => dispatch(actions.deleteBookFailure(error)))
+  },
   loadBooks: () => dispatch => {
     return loadAll()
       .then(res => dispatch(actions.loadBooksSuccess(res)))
@@ -70,6 +99,32 @@ const actions = {
   }),
   createBookFailure: error => ({
     type: types.CREATE_BOOK_FAILURE,
+    payload: {
+      error
+    }
+  }),
+  updateBookSuccess: newBook => ({
+    type: types.CREATE_BOOK_SUCCESS,
+    payload: {
+      data: newBook
+    }
+  }),
+  updateBookFailure: error => ({
+    type: types.CREATE_BOOK_FAILURE,
+    payload: {
+      error
+    }
+  }),
+  deleteBookSuccess: bookId => ({
+    type: types.DELETE_BOOK_SUCCESS,
+    payload: {
+      data: {
+        id: bookId
+      }
+    }
+  }),
+  deleteBookFailure: error => ({
+    type: types.DELETE_BOOK_FAILURE,
     payload: {
       error
     }
