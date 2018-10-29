@@ -1,49 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const viewOptions = [
-  { id: 'grid', displayType: 'Grid' },
-  { id: 'list', displayType: 'List' }
-];
-
-const ViewToggle = ({ handleViewTypeToogle, viewType }) => {
-  const handleOnChange = (e) => {
+const ViewToggle = ({ className, onViewTypeToogle, viewType }) => {
+  const onClick = (e) => {
     e.preventDefault();
-    const optionIndex = e.target.selectedIndex;
-    const selectedViewType = viewOptions[optionIndex];
 
-    handleViewTypeToogle(selectedViewType.id);
-  }
-
-  const getViewOptions = () => {
-    return viewOptions.map(option => {
-      return (
-        <option
-          key={ option.id }
-          value={ option.id }
-        >
-          { option.displayType }
-        </option>
-      );
-    });
+    onViewTypeToogle(e.target.value);
   }
 
   return (
-    <div>
-      <label htmlFor="view-toggle">View Toggle</label>
-      <select
-        id="view-toggle"
-        onChange={ handleOnChange }
-        value={ viewType }
-      >
-        { getViewOptions() }
-      </select>
+    <div className={`${className} mb-3`}>
+      <label htmlFor="view-type" style={ { display: 'block'} }>View Type</label>
+      <div className="btn-group" id="view-type">
+        <button
+          className={ `btn btn-outline-primary ${viewType === 'grid' ? 'active' : ''}` }
+          onClick={ onClick }
+          value="grid"
+        >
+          Grid
+        </button>
+        <button
+          className={ `btn btn-outline-primary ${viewType === 'list' ? 'active' : ''}` }
+          onClick={ onClick }
+          value="list"
+        >
+          List
+        </button>
+      </div>
     </div>
   );
 }
 
 ViewToggle.propTypes = {
-  handleViewTypeToogle: PropTypes.func,
+  className: PropTypes.string,
+  onViewTypeToogle: PropTypes.func,
   viewType: PropTypes.string
 }
 
