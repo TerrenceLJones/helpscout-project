@@ -1,5 +1,6 @@
 # HelpScout Project Post Mortem
 
+![](https://user-images.githubusercontent.com/7111256/47680725-ec371900-db84-11e8-97b6-603aa62201ec.png)
 #### Live Application Link: https://gentle-fjord-88236.herokuapp.com/books
 #### GitHub Link: https://github.com/TerrenceLJones/helpscout-project/
 
