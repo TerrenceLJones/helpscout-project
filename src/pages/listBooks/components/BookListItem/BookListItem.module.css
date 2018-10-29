@@ -1,0 +1,11 @@
+.bookListItem {
+  overflow: hidden;
+}
+
+.bookMeta {
+  color: #000;
+}
+
+.bookListImageContainer {
+  padding-left: 0;
+}
