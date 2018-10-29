@@ -179,8 +179,7 @@ const selectors = {
     })
   },
   getSortedBooks(books, sortBy, sortDirection) {
-    const sortByToLower = sortBy && sortBy.toLowerCase();
-    return _.orderBy(books, sortByToLower, [sortDirection]);
+    return _.orderBy(books, sortBy, [sortDirection]);
   }
 };
 
