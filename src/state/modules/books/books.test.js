@@ -85,3 +85,19 @@ describe('reducer', () => {
   it('handles LOAD_BOOK_SUCCESS action', () => {});
   it('handles LOAD_BOOK_FAILURE action', () => {});
 });
+
+
+describe('selectors', () => {
+  describe('getBookSelector', () => {
+    it('returns the correct subset of data', () => {});
+  })
+  describe('getBooksSelector', () => {
+    it('returns the correct subset of data', () => {});
+  })
+  describe('getFilteredBooks', () => {
+    it('returns the correct subset of data', () => {});
+  })
+  describe('getSortedBooks', () => {
+    it('returns the correct subset of data', () => {});
+  })
+});

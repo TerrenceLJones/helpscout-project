@@ -1,0 +1,25 @@
+
+.bookGridItem {
+  border-radius: 5px;
+  height: 400px;
+  list-style: none;
+  margin: 0 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.bookGridItemLink {
+  display: block;
+  height: 100%;
+}
+
+.bookGridItemLink:hover {
+  text-decoration: none;
+}
+
+.bookGridItemImage {
+  background-size: cover;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
