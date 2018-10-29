@@ -3,17 +3,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
+import _ from 'lodash';
+import classNames from 'classnames';
 
+import Header from 'components/Header';
 import ErrorDisplay from 'components/ErrorDisplay';
 import Loader from 'components/Loader';
 import EmptyBooks from 'pages/listBooks/components/EmptyBooks';
 import BookGridItem from 'pages/listBooks/components/BookGridItem';
 import BookListItem from 'pages/listBooks/components/BookListItem';
+import ListSelector from 'pages/listBooks/components/ListControls/SelectList';
 import ViewToggle from 'pages/listBooks/components/ListControls/ViewToggle';
-import BookFilterSelector from 'pages/listBooks/components/ListControls/BookFilterSelector';
-import SortBySelector from 'pages/listBooks/components/ListControls/SortBySelector';
-import SortDirectionSelector from 'pages/listBooks/components/ListControls/SortDirectionSelector';
 
+import styles from './ListBooks.module.css';
+
+import { sortByOptions, sortDirectionOptions } from 'pages/listBooks/statics/listSelectOptions';
 import { booksActions, booksSelectors, booksTypes } from 'state/modules/books';
 import { apiSelectors } from 'state/modules/api'
 
@@ -26,18 +30,37 @@ class ListBooks extends Component {
     books: PropTypes.array,
     isLoading: PropTypes.bool,
     loadBooks: PropTypes.func,
-    loadError: PropTypes.string
+    error: PropTypes.string
   }
 
   state = {
-    availableCategoryFilters: {},
+    categoryFilterOptions: [],
     bookCategoryFilter: '',
     sortBy: 'title',
     sortDirection: 'asc',
     viewType: 'grid'
   }
 
-  componentWillReceiveProps(nextProps) {
+  constructor(props) {
+    super(props);
+
+    this.setUrlFromPropsOrState();
+  }
+
+  setUrlFromPropsOrState = () => {
+    const searchObject = queryString.parse(this.props.location.search);
+
+    const searchObjectFromState = {
+      filter: _.get(searchObject, 'filter', this.state.bookCategoryFilter),
+      sortDirection: _.get(searchObject, 'sortDirection',  this.state.sortDirection),
+      sortBy: _.get(searchObject, 'sortBy', this.state.sortBy),
+      viewType: _.get(searchObject, 'viewType', this.state.viewType)
+    };
+
+    this.updateSearchURL(searchObjectFromState);
+  }
+
+  static getDerivedStateFromProps(nextProps, state) {
     const books = nextProps.books;
     const {
       sortBy,
@@ -46,104 +69,145 @@ class ListBooks extends Component {
       viewType
     } = queryString.parse(nextProps.location.search);
 
-    const availableCategoryFilters = {};
+    const filterOptions = [];
 
     books.forEach(({ category }) => {
-      if(availableCategoryFilters[category]) {
+      // Prevent duplicate filters being added to filterOptions array.
+      const existingFilter = _.find(filterOptions, { id: category });
+      if(existingFilter) {
         return;
       }
-      return availableCategoryFilters[category] = category;
+
+      // Default to a category of `unknown` when one isn't set by user.
+      const newFilter = { id: category, label: category || 'unknown' };
+      filterOptions.push(newFilter);
     });
 
-    this.setState({
-      availableCategoryFilters,
+    return {
+      categoryFilterOptions: filterOptions,
       bookCategoryFilter,
       sortDirection,
       sortBy,
       viewType
-    });
+    };
   }
 
   componentDidMount() {
     this.props.loadBooks();
   }
 
-  handleViewTypeToogle = (selectedViewType) => {
-    this.setState({ viewType: selectedViewType });
+  updateSearchItem(itemName, updatedValue) {
+    const searchObject = queryString.parse(this.props.location.search);
+
+    if(!updatedValue) {
+      return _.omit(searchObject, itemName);
+    }
+    return { ...searchObject, [itemName]: updatedValue };
   }
 
-  handleCategoryFilterChange = (selectedCategoryFilter) => {
-    this.setState({ bookCategoryFilter: selectedCategoryFilter });
+  updateSearchURL(newSearchObject) {
+    this.props.history.push(`/books/?${queryString.stringify(newSearchObject)}`);
   }
 
-  handleSortByChange = (selectedSortBy) => {
-    this.setState({ sortBy: selectedSortBy.id });
+  onViewTypeToogle = selectedViewType => {
+    const updatedSearchItem = this.updateSearchItem('viewType', selectedViewType);
+    this.updateSearchURL(updatedSearchItem);
   }
 
-  handleSortDirectionChange = (selectedSortDirection) => {
-    this.setState({ sortDirection: selectedSortDirection.id })
+  onCategoryFilterChange = (selectedCategoryFilter) => {
+    const updatedSearchItem = this.updateSearchItem('filter', selectedCategoryFilter);
+    this.updateSearchURL(updatedSearchItem);
+  }
+
+  onSortByChange = (selectedSortBy) => {
+    const updatedSearchItem = this.updateSearchItem('sortBy', selectedSortBy);
+    this.updateSearchURL(updatedSearchItem);
+  }
+
+  onSortDirectionChange = (selectedSortDirection) => {
+    const updatedSearchItem = this.updateSearchItem('sortDirection', selectedSortDirection);
+    this.updateSearchURL(updatedSearchItem);
   };
 
-  handleReset = (e) => {
-    e.preventDefault();
-    this.setState({
-      bookCategoryFilter: '',
-      sortBy: 'title',
-      sortDirection: 'asc',
-      viewType: 'grid'
-    })
+  handleResetBookFilter = () => {
+    const updatedSearchItem = this.updateSearchItem('filter', '');
+    this.updateSearchURL(updatedSearchItem);
   }
 
   getHeader = () => {
     return (
-      <header>
+      <Header>
         <h1>Book Library</h1>
-        <Link to="/books/new">New book</Link>
-      </header>
+        <Link className="btn btn-success" to="/books/new">New book</Link>
+      </Header>
     );
   }
 
   getBookListControls = () => {
     return (
-      <div>
+      <div className="row">
         <ViewToggle
-          handleViewTypeToogle={ this.handleViewTypeToogle }
+          className="col-md-2"
+          onViewTypeToogle={ this.onViewTypeToogle }
           viewType={ this.state.viewType }
         />
-        <BookFilterSelector
-          availableCategoryFilters={ this.state.availableCategoryFilters }
-          bookCategoryFilter={ this.state.bookCategoryFilter }
-          handleCategoryFilterChange={ this.handleCategoryFilterChange }
+
+        <ListSelector
+          classNames="col-md-4"
+          defaultOptionText="None"
+          label="Category Filter"
+          onChangeHandler={ this.onCategoryFilterChange }
+          options={ this.state.categoryFilterOptions }
+          selectedOption={ this.state.bookCategoryFilter }
         />
-        <SortBySelector
-          handleSortByChange={ this.handleSortByChange }
-          sortBy={ this.state.sortBy }
+
+        <ListSelector
+          classNames="col-md-3"
+          label="Sort By"
+          onChangeHandler={ this.onSortByChange }
+          options={ sortByOptions }
+          selectedOption={ this.state.sortBy }
         />
-        <SortDirectionSelector
-          handleSortDirectionChange={ this.handleSortDirectionChange }
-          sortDirection={ this.state.sortDirection }
+
+        <ListSelector
+          classNames="col-md-3"
+          label="Sort Direction"
+          onChangeHandler={ this.onSortDirectionChange }
+          options={ sortDirectionOptions }
+          selectedOption={ this.state.sortDirection }
         />
-        <button type="button" onClick={ this.handleReset }>Reset</button>
       </div>
     );
   }
 
   getBooks = (filteredBooks) => {
+    const isGrid = this.state.viewType === 'grid';
     const bookItems = filteredBooks.map(book => {
-      return this.state.viewType === 'grid' ?
+      return isGrid ?
         <BookGridItem key={ book.id } book={ book }/> :
         <BookListItem key={ book.id } book={ book }/>
     });
+    const classes = classNames(styles.books, {
+      'd-flex': isGrid,
+      'row': !isGrid
+    });
 
-    return <ol>{ bookItems }</ol>;
+    return (
+      <div className="py-3">
+        <ol className={ classes }>
+          { bookItems }
+        </ol>
+      </div>
+    );
   }
 
   render () {
     const filteredBooks = booksSelectors.getFilteredBooks(this.props.books, this.state.bookCategoryFilter);
     const sortedBooks = booksSelectors.getSortedBooks(filteredBooks, this.state.sortBy, this.state.sortDirection);
+    const error = this.props.error;
 
-    if(this.props.error) {
-      return <ErrorDisplay />;
+    if(error) {
+      return <ErrorDisplay error={error} />;
     }
 
     if(this.props.isLoading) {
@@ -155,10 +219,12 @@ class ListBooks extends Component {
     }
 
     return (
-      <div>
+      <div className="page">
         { this.getHeader() }
-        { this.getBookListControls() }
-        { this.getBooks(sortedBooks) }
+        <div className="container">
+          { this.getBookListControls() }
+          { this.getBooks(sortedBooks) }
+        </div>
       </div>
     );
   }
@@ -170,7 +236,7 @@ const mapStateToProps = (state) => {
   return {
     books,
     isLoading: books.length ? resultsLoadingSelector(state) : true,
-    loadError: resultsErrorSelector(state)
+    error: resultsErrorSelector(state)
   };
 }
 
