@@ -14,6 +14,12 @@
   width: 100%;
 }
 
+@media screen and (max-width: 450px) {
+  .imageContainer {
+    height: 300px;
+  }
+}
+
 .image {
   background-position: center;
   background-repeat: no-repeat;

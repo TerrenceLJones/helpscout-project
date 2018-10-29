@@ -36,7 +36,7 @@ class BookDetails extends Component {
       <Header>
         <h1>Book Details</h1>
         <div>
-          <Link className="btn btn-secondary mr-3" to='/books'>All books</Link>
+          <Link className="btn btn-secondary mr-3 d-inline" to='/books'>All books</Link>
           <Link className="btn btn-success" to={ `/books/${this.props.book.id}/edit` }>Edit book</Link>
         </div>
       </Header>
@@ -50,7 +50,7 @@ class BookDetails extends Component {
 
     return (
       <div className="row">
-        <div className="col-6">
+        <div className="col-md-6 mb-2">
           <div className={ imageContainerStyles }>
             <div
               className={ styles.image }
@@ -58,7 +58,7 @@ class BookDetails extends Component {
             />
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-md-6">
           <h3>{ title }</h3>
           <p>{ author }</p>
           <p>{ category }</p>

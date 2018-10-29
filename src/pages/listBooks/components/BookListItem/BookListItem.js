@@ -17,12 +17,12 @@ const BookListItem = function Book({ book }) {
     <li className={ listItemClasses }>
       <Link to={ `/books/${id}` }>
         <div className="row">
-          <div className={ classNames(styles.leftContainer, 'col-6') }>
+          <div className={ classNames(styles.leftContainer, 'col-md-6', 'col-sm-12') }>
             <div className={ styles.imageContainer }>
               <div className={ styles.image } style={ { backgroundImage: `url("${backgroundImage}")` } } />
             </div>
           </div>
-          <div className="card-body col-6">
+          <div className="card-body col-md-6 col-sm-12">
             <h3 className={ styles.meta }>{ title }</h3>
             <h4 className={ styles.meta }>{ author }</h4>
             <p className={ styles.meta }>{ category }</p>
