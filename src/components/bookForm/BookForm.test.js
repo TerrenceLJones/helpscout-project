@@ -7,8 +7,8 @@ import { BookForm } from './BookForm';
 it('renders without crashing', () => {
     expect(shallow(<BookForm
         book={ {} }
-        handleSubmit={ jest.fn() }
-        handleDelete={ jest.fn() }
+        onSubmit={ jest.fn() }
+        onDelete={ jest.fn() }
     />)).toMatchSnapshot();
 });
 

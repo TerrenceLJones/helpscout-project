@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import styles from 'components/bookForm/BookForm.module.css';
 
+import { getPlaceHolderImageUrl } from 'helpers/placeHolderImage';
+
 const BookForm = class BookForm extends Component {
   static propTypes = {
     book: PropTypes.object,
@@ -83,7 +85,8 @@ const BookForm = class BookForm extends Component {
 
   getImagePreview = () => {
     const { imagePreviewUrl } = this.state;
-    const backgroundImage = imagePreviewUrl || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
+    const title = this.props.book && this.props.book.title;
+    const backgroundImage = imagePreviewUrl || getPlaceHolderImageUrl(title);
     const containerClasses = classNames(styles.container, 'card shadow-sm');
     const imagePreviewClasses = classNames(styles.linkButton, styles.image);
     const imagePreviewButtonClasses = classNames(styles.linkButton, styles.buttonText);

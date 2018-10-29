@@ -1,5 +1,13 @@
 [
   {
+    "title": "A book without a cover image",
+    "author": "Unknown",
+    "category": "Unknown",
+    "createdAt": "1540618464476",
+    "id": "994502e0-d8e5-11e8-c357-6334ead1351f",
+    "image": ""
+  },
+  {
     "title": "Harry Potter and the Sorcerer's Stone",
     "author": "J.K. Rowling",
     "category": "fiction",

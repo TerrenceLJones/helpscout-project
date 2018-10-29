@@ -5,8 +5,8 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BookForm
     book={Object {}}
-    handleDelete={[MockFunction]}
-    handleSubmit={[MockFunction]}
+    onDelete={[MockFunction]}
+    onSubmit={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -24,40 +24,110 @@ ShallowWrapper {
       "children": <form
         onSubmit={[Function]}
       >
-        <label
-          htmlFor="title"
+        <div
+          className="row mb-4"
         >
-          Title
-        </label>
-        <input
-          id="title"
-          onChange={[Function]}
-          type="text"
-        />
-        <label
-          htmlFor="category"
-        >
-          Category
-        </label>
-        <input
-          id="category"
-          onChange={[Function]}
-          type="text"
-        />
-        <div>
-          Please select an Image for Preview
+          <div
+            className="col-md-6 mb-4"
+          >
+            <div
+              className="container card shadow-sm"
+            >
+              <div
+                className="imageContainer"
+              >
+                <button
+                  className="linkButton image"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                    }
+                  }
+                  type="button"
+                />
+              </div>
+              <div
+                className="card-body"
+              >
+                <input
+                  accept="image/*"
+                  className="bookImageAddButton"
+                  id="image"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "none",
+                    }
+                  }
+                  type="file"
+                />
+                <button
+                  className="linkButton buttonText"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add Book Cover
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col-md-6"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                className="form-control"
+                id="title"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="title"
+              >
+                Author
+              </label>
+              <input
+                className="form-control"
+                id="title"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="category"
+              >
+                Category
+              </label>
+              <input
+                className="form-control"
+                id="category"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <button
+              className="btn btn-success btn-block"
+              type="submit"
+            >
+              Create
+            </button>
+          </div>
         </div>
-        <input
-          accept="image/*"
-          id="image"
-          onChange={[Function]}
-          type="file"
-        />
-        <button
-          type="submit"
-        >
-          Create
-        </button>
       </form>,
     },
     "ref": null,
@@ -66,138 +136,668 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": Array [
-          <label
-            htmlFor="title"
+        "children": <div
+          className="row mb-4"
+        >
+          <div
+            className="col-md-6 mb-4"
           >
-            Title
-          </label>,
-          <input
-            id="title"
-            onChange={[Function]}
-            type="text"
-          />,
-          <label
-            htmlFor="category"
+            <div
+              className="container card shadow-sm"
+            >
+              <div
+                className="imageContainer"
+              >
+                <button
+                  className="linkButton image"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                    }
+                  }
+                  type="button"
+                />
+              </div>
+              <div
+                className="card-body"
+              >
+                <input
+                  accept="image/*"
+                  className="bookImageAddButton"
+                  id="image"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "none",
+                    }
+                  }
+                  type="file"
+                />
+                <button
+                  className="linkButton buttonText"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add Book Cover
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col-md-6"
           >
-            Category
-          </label>,
-          <input
-            id="category"
-            onChange={[Function]}
-            type="text"
-          />,
-          <div>
-            Please select an Image for Preview
-          </div>,
-          <input
-            accept="image/*"
-            id="image"
-            onChange={[Function]}
-            type="file"
-          />,
-          <button
-            type="submit"
-          >
-            Create
-          </button>,
-          null,
-        ],
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                className="form-control"
+                id="title"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="title"
+              >
+                Author
+              </label>
+              <input
+                className="form-control"
+                id="title"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="category"
+              >
+                Category
+              </label>
+              <input
+                className="form-control"
+                id="category"
+                onChange={[Function]}
+                type="text"
+              />
+            </div>
+            <button
+              className="btn btn-success btn-block"
+              type="submit"
+            >
+              Create
+            </button>
+          </div>
+        </div>,
         "onSubmit": [Function],
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Title",
-            "htmlFor": "title",
-          },
-          "ref": null,
-          "rendered": "Title",
-          "type": "label",
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="col-md-6 mb-4"
+            >
+              <div
+                className="container card shadow-sm"
+              >
+                <div
+                  className="imageContainer"
+                >
+                  <button
+                    className="linkButton image"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                      }
+                    }
+                    type="button"
+                  />
+                </div>
+                <div
+                  className="card-body"
+                >
+                  <input
+                    accept="image/*"
+                    className="bookImageAddButton"
+                    id="image"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                  <button
+                    className="linkButton buttonText"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Add Book Cover
+                  </button>
+                </div>
+              </div>
+            </div>,
+            <div
+              className="col-md-6"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Title
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Author
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <input
+                  className="form-control"
+                  id="category"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <button
+                className="btn btn-success btn-block"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>,
+          ],
+          "className": "row mb-4",
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "id": "title",
-            "onChange": [Function],
-            "type": "text",
-            "value": undefined,
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="container card shadow-sm"
+              >
+                <div
+                  className="imageContainer"
+                >
+                  <button
+                    className="linkButton image"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                      }
+                    }
+                    type="button"
+                  />
+                </div>
+                <div
+                  className="card-body"
+                >
+                  <input
+                    accept="image/*"
+                    className="bookImageAddButton"
+                    id="image"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                  <button
+                    className="linkButton buttonText"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Add Book Cover
+                  </button>
+                </div>
+              </div>,
+              "className": "col-md-6 mb-4",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="imageContainer"
+                  >
+                    <button
+                      className="linkButton image"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                        }
+                      }
+                      type="button"
+                    />
+                  </div>,
+                  <div
+                    className="card-body"
+                  >
+                    <input
+                      accept="image/*"
+                      className="bookImageAddButton"
+                      id="image"
+                      onChange={[Function]}
+                      style={
+                        Object {
+                          "display": "none",
+                        }
+                      }
+                      type="file"
+                    />
+                    <button
+                      className="linkButton buttonText"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Add Book Cover
+                    </button>
+                  </div>,
+                ],
+                "className": "container card shadow-sm",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <button
+                      className="linkButton image"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                        }
+                      }
+                      type="button"
+                    />,
+                    "className": "imageContainer",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "linkButton image",
+                      "onClick": [Function],
+                      "style": Object {
+                        "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                      },
+                      "type": "button",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "button",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <input
+                        accept="image/*"
+                        className="bookImageAddButton"
+                        id="image"
+                        onChange={[Function]}
+                        style={
+                          Object {
+                            "display": "none",
+                          }
+                        }
+                        type="file"
+                      />,
+                      <button
+                        className="linkButton buttonText"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Add Book Cover
+                      </button>,
+                    ],
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "accept": "image/*",
+                        "className": "bookImageAddButton",
+                        "id": "image",
+                        "onChange": [Function],
+                        "style": Object {
+                          "display": "none",
+                        },
+                        "type": "file",
+                      },
+                      "ref": Object {
+                        "current": null,
+                      },
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Add Book Cover",
+                        "className": "linkButton buttonText",
+                        "onClick": [Function],
+                        "type": "button",
+                      },
+                      "ref": null,
+                      "rendered": "Add Book Cover",
+                      "type": "button",
+                    },
+                  ],
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
           },
-          "ref": null,
-          "rendered": null,
-          "type": "input",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Category",
-            "htmlFor": "category",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Title
+                  </label>
+                  <input
+                    className="form-control"
+                    id="title"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>,
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Author
+                  </label>
+                  <input
+                    className="form-control"
+                    id="title"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>,
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="category"
+                  >
+                    Category
+                  </label>
+                  <input
+                    className="form-control"
+                    id="category"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>,
+                <button
+                  className="btn btn-success btn-block"
+                  type="submit"
+                >
+                  Create
+                </button>,
+                null,
+              ],
+              "className": "col-md-6",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <label
+                      htmlFor="title"
+                    >
+                      Title
+                    </label>,
+                    <input
+                      className="form-control"
+                      id="title"
+                      onChange={[Function]}
+                      type="text"
+                    />,
+                  ],
+                  "className": "form-group",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Title",
+                      "htmlFor": "title",
+                    },
+                    "ref": null,
+                    "rendered": "Title",
+                    "type": "label",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "form-control",
+                      "id": "title",
+                      "onChange": [Function],
+                      "type": "text",
+                      "value": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <label
+                      htmlFor="title"
+                    >
+                      Author
+                    </label>,
+                    <input
+                      className="form-control"
+                      id="title"
+                      onChange={[Function]}
+                      type="text"
+                    />,
+                  ],
+                  "className": "form-group",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Author",
+                      "htmlFor": "title",
+                    },
+                    "ref": null,
+                    "rendered": "Author",
+                    "type": "label",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "form-control",
+                      "id": "title",
+                      "onChange": [Function],
+                      "type": "text",
+                      "value": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <label
+                      htmlFor="category"
+                    >
+                      Category
+                    </label>,
+                    <input
+                      className="form-control"
+                      id="category"
+                      onChange={[Function]}
+                      type="text"
+                    />,
+                  ],
+                  "className": "form-group",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Category",
+                      "htmlFor": "category",
+                    },
+                    "ref": null,
+                    "rendered": "Category",
+                    "type": "label",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "form-control",
+                      "id": "category",
+                      "onChange": [Function],
+                      "type": "text",
+                      "value": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Create",
+                  "className": "btn btn-success btn-block",
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": "Create",
+                "type": "button",
+              },
+              null,
+            ],
+            "type": "div",
           },
-          "ref": null,
-          "rendered": "Category",
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "id": "category",
-            "onChange": [Function],
-            "type": "text",
-            "value": undefined,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "input",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Please select an Image for Preview",
-          },
-          "ref": null,
-          "rendered": "Please select an Image for Preview",
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "accept": "image/*",
-            "id": "image",
-            "onChange": [Function],
-            "type": "file",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "input",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Create",
-            "type": "submit",
-          },
-          "ref": null,
-          "rendered": "Create",
-          "type": "button",
-        },
-        null,
-      ],
+        ],
+        "type": "div",
+      },
       "type": "form",
     },
     "type": "div",
@@ -211,40 +811,110 @@ ShallowWrapper {
         "children": <form
           onSubmit={[Function]}
         >
-          <label
-            htmlFor="title"
+          <div
+            className="row mb-4"
           >
-            Title
-          </label>
-          <input
-            id="title"
-            onChange={[Function]}
-            type="text"
-          />
-          <label
-            htmlFor="category"
-          >
-            Category
-          </label>
-          <input
-            id="category"
-            onChange={[Function]}
-            type="text"
-          />
-          <div>
-            Please select an Image for Preview
+            <div
+              className="col-md-6 mb-4"
+            >
+              <div
+                className="container card shadow-sm"
+              >
+                <div
+                  className="imageContainer"
+                >
+                  <button
+                    className="linkButton image"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                      }
+                    }
+                    type="button"
+                  />
+                </div>
+                <div
+                  className="card-body"
+                >
+                  <input
+                    accept="image/*"
+                    className="bookImageAddButton"
+                    id="image"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                  <button
+                    className="linkButton buttonText"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Add Book Cover
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-6"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Title
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Author
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <input
+                  className="form-control"
+                  id="category"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <button
+                className="btn btn-success btn-block"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
           </div>
-          <input
-            accept="image/*"
-            id="image"
-            onChange={[Function]}
-            type="file"
-          />
-          <button
-            type="submit"
-          >
-            Create
-          </button>
         </form>,
       },
       "ref": null,
@@ -253,138 +923,668 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": Array [
-            <label
-              htmlFor="title"
+          "children": <div
+            className="row mb-4"
+          >
+            <div
+              className="col-md-6 mb-4"
             >
-              Title
-            </label>,
-            <input
-              id="title"
-              onChange={[Function]}
-              type="text"
-            />,
-            <label
-              htmlFor="category"
+              <div
+                className="container card shadow-sm"
+              >
+                <div
+                  className="imageContainer"
+                >
+                  <button
+                    className="linkButton image"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                      }
+                    }
+                    type="button"
+                  />
+                </div>
+                <div
+                  className="card-body"
+                >
+                  <input
+                    accept="image/*"
+                    className="bookImageAddButton"
+                    id="image"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                  <button
+                    className="linkButton buttonText"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Add Book Cover
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-6"
             >
-              Category
-            </label>,
-            <input
-              id="category"
-              onChange={[Function]}
-              type="text"
-            />,
-            <div>
-              Please select an Image for Preview
-            </div>,
-            <input
-              accept="image/*"
-              id="image"
-              onChange={[Function]}
-              type="file"
-            />,
-            <button
-              type="submit"
-            >
-              Create
-            </button>,
-            null,
-          ],
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Title
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  Author
+                </label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="category"
+                >
+                  Category
+                </label>
+                <input
+                  className="form-control"
+                  id="category"
+                  onChange={[Function]}
+                  type="text"
+                />
+              </div>
+              <button
+                className="btn btn-success btn-block"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
+          </div>,
           "onSubmit": [Function],
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Title",
-              "htmlFor": "title",
-            },
-            "ref": null,
-            "rendered": "Title",
-            "type": "label",
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="col-md-6 mb-4"
+              >
+                <div
+                  className="container card shadow-sm"
+                >
+                  <div
+                    className="imageContainer"
+                  >
+                    <button
+                      className="linkButton image"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                        }
+                      }
+                      type="button"
+                    />
+                  </div>
+                  <div
+                    className="card-body"
+                  >
+                    <input
+                      accept="image/*"
+                      className="bookImageAddButton"
+                      id="image"
+                      onChange={[Function]}
+                      style={
+                        Object {
+                          "display": "none",
+                        }
+                      }
+                      type="file"
+                    />
+                    <button
+                      className="linkButton buttonText"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Add Book Cover
+                    </button>
+                  </div>
+                </div>
+              </div>,
+              <div
+                className="col-md-6"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Title
+                  </label>
+                  <input
+                    className="form-control"
+                    id="title"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="title"
+                  >
+                    Author
+                  </label>
+                  <input
+                    className="form-control"
+                    id="title"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="category"
+                  >
+                    Category
+                  </label>
+                  <input
+                    className="form-control"
+                    id="category"
+                    onChange={[Function]}
+                    type="text"
+                  />
+                </div>
+                <button
+                  className="btn btn-success btn-block"
+                  type="submit"
+                >
+                  Create
+                </button>
+              </div>,
+            ],
+            "className": "row mb-4",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "id": "title",
-              "onChange": [Function],
-              "type": "text",
-              "value": undefined,
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <div
+                  className="container card shadow-sm"
+                >
+                  <div
+                    className="imageContainer"
+                  >
+                    <button
+                      className="linkButton image"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                        }
+                      }
+                      type="button"
+                    />
+                  </div>
+                  <div
+                    className="card-body"
+                  >
+                    <input
+                      accept="image/*"
+                      className="bookImageAddButton"
+                      id="image"
+                      onChange={[Function]}
+                      style={
+                        Object {
+                          "display": "none",
+                        }
+                      }
+                      type="file"
+                    />
+                    <button
+                      className="linkButton buttonText"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Add Book Cover
+                    </button>
+                  </div>
+                </div>,
+                "className": "col-md-6 mb-4",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="imageContainer"
+                    >
+                      <button
+                        className="linkButton image"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                          }
+                        }
+                        type="button"
+                      />
+                    </div>,
+                    <div
+                      className="card-body"
+                    >
+                      <input
+                        accept="image/*"
+                        className="bookImageAddButton"
+                        id="image"
+                        onChange={[Function]}
+                        style={
+                          Object {
+                            "display": "none",
+                          }
+                        }
+                        type="file"
+                      />
+                      <button
+                        className="linkButton buttonText"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Add Book Cover
+                      </button>
+                    </div>,
+                  ],
+                  "className": "container card shadow-sm",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <button
+                        className="linkButton image"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                          }
+                        }
+                        type="button"
+                      />,
+                      "className": "imageContainer",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "linkButton image",
+                        "onClick": [Function],
+                        "style": Object {
+                          "backgroundImage": "url(\\"https://dummyimage.com/231x350/000/ffffff.png&text=Book Cover\\")",
+                        },
+                        "type": "button",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "button",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <input
+                          accept="image/*"
+                          className="bookImageAddButton"
+                          id="image"
+                          onChange={[Function]}
+                          style={
+                            Object {
+                              "display": "none",
+                            }
+                          }
+                          type="file"
+                        />,
+                        <button
+                          className="linkButton buttonText"
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          Add Book Cover
+                        </button>,
+                      ],
+                      "className": "card-body",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "accept": "image/*",
+                          "className": "bookImageAddButton",
+                          "id": "image",
+                          "onChange": [Function],
+                          "style": Object {
+                            "display": "none",
+                          },
+                          "type": "file",
+                        },
+                        "ref": Object {
+                          "current": null,
+                        },
+                        "rendered": null,
+                        "type": "input",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Add Book Cover",
+                          "className": "linkButton buttonText",
+                          "onClick": [Function],
+                          "type": "button",
+                        },
+                        "ref": null,
+                        "rendered": "Add Book Cover",
+                        "type": "button",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              "type": "div",
             },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Category",
-              "htmlFor": "category",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="title"
+                    >
+                      Title
+                    </label>
+                    <input
+                      className="form-control"
+                      id="title"
+                      onChange={[Function]}
+                      type="text"
+                    />
+                  </div>,
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="title"
+                    >
+                      Author
+                    </label>
+                    <input
+                      className="form-control"
+                      id="title"
+                      onChange={[Function]}
+                      type="text"
+                    />
+                  </div>,
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="category"
+                    >
+                      Category
+                    </label>
+                    <input
+                      className="form-control"
+                      id="category"
+                      onChange={[Function]}
+                      type="text"
+                    />
+                  </div>,
+                  <button
+                    className="btn btn-success btn-block"
+                    type="submit"
+                  >
+                    Create
+                  </button>,
+                  null,
+                ],
+                "className": "col-md-6",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <label
+                        htmlFor="title"
+                      >
+                        Title
+                      </label>,
+                      <input
+                        className="form-control"
+                        id="title"
+                        onChange={[Function]}
+                        type="text"
+                      />,
+                    ],
+                    "className": "form-group",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Title",
+                        "htmlFor": "title",
+                      },
+                      "ref": null,
+                      "rendered": "Title",
+                      "type": "label",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "form-control",
+                        "id": "title",
+                        "onChange": [Function],
+                        "type": "text",
+                        "value": undefined,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <label
+                        htmlFor="title"
+                      >
+                        Author
+                      </label>,
+                      <input
+                        className="form-control"
+                        id="title"
+                        onChange={[Function]}
+                        type="text"
+                      />,
+                    ],
+                    "className": "form-group",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Author",
+                        "htmlFor": "title",
+                      },
+                      "ref": null,
+                      "rendered": "Author",
+                      "type": "label",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "form-control",
+                        "id": "title",
+                        "onChange": [Function],
+                        "type": "text",
+                        "value": undefined,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <label
+                        htmlFor="category"
+                      >
+                        Category
+                      </label>,
+                      <input
+                        className="form-control"
+                        id="category"
+                        onChange={[Function]}
+                        type="text"
+                      />,
+                    ],
+                    "className": "form-group",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Category",
+                        "htmlFor": "category",
+                      },
+                      "ref": null,
+                      "rendered": "Category",
+                      "type": "label",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "form-control",
+                        "id": "category",
+                        "onChange": [Function],
+                        "type": "text",
+                        "value": undefined,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Create",
+                    "className": "btn btn-success btn-block",
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": "Create",
+                  "type": "button",
+                },
+                null,
+              ],
+              "type": "div",
             },
-            "ref": null,
-            "rendered": "Category",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "id": "category",
-              "onChange": [Function],
-              "type": "text",
-              "value": undefined,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Please select an Image for Preview",
-            },
-            "ref": null,
-            "rendered": "Please select an Image for Preview",
-            "type": "div",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "accept": "image/*",
-              "id": "image",
-              "onChange": [Function],
-              "type": "file",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Create",
-              "type": "submit",
-            },
-            "ref": null,
-            "rendered": "Create",
-            "type": "button",
-          },
-          null,
-        ],
+          ],
+          "type": "div",
+        },
         "type": "form",
       },
       "type": "div",

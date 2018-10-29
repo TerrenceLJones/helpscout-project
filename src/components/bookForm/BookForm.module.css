@@ -1,5 +1,7 @@
 .container {
-    overflow: hidden;
+  width: 233px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .imageContainer {
@@ -7,9 +9,9 @@
 }
 
 .image {
-  background-size: cover;
-  background-position: center center;
-  display: block !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 100%;
   width: 100%;
 }

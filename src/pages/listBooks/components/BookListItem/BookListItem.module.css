@@ -1,11 +1,26 @@
-.bookListItem {
+.listItem {
   overflow: hidden;
 }
 
-.bookMeta {
-  color: #000;
+.leftContainer {
+  padding-left: 0;
 }
 
-.bookListImageContainer {
-  padding-left: 0;
+.imageContainer {
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+}
+
+.meta {
+  color: #000;
 }

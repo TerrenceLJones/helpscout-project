@@ -1,11 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { BooksList } from './ListBooks';
+import { ListBooks } from './ListBooks';
 
 it('renders without crashing', () => {
-  expect(shallow(<BooksList
+  expect(shallow(<ListBooks
       books={ [] }
+      history={ { push: jest.fn() } }
       loadBooks={ jest.fn() }
+      location={ { search: {} } }
       isLoading={ false }
       loadError={ '' }
   />)).toMatchSnapshot();

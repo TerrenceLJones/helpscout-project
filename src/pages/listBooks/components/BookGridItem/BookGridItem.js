@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
+import { getPlaceHolderImageUrl } from 'helpers/placeHolderImage';
 
 import styles from './BookGridItem.module.css';
 
 const BookGridItem = function Book({ book }) {
   const { id, image: imagePreviewUrl, title } = book;
-  const backgroundImage = imagePreviewUrl || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
+  const backgroundImage = imagePreviewUrl || getPlaceHolderImageUrl(title);
+  const containerClasses = classNames(styles.item, 'card', 'col-md-3', 'col-sm-12', 'mb-4', 'shadow-sm' );
 
   return (
-    <li className={ `${styles.bookGridItem } card col-md-3 col-sm-12 mb-4 shadow-sm` }>
-      <Link className={ styles.bookGridItemLink } to={ `/books/${id}` }>
+    <li className={ containerClasses }>
+      <Link className={ styles.itemLink } to={ `/books/${id}` }>
         <div
-          className={ styles.bookGridItemImage }
+          className={ styles.itemImage }
           style={ { backgroundImage: `url("${backgroundImage}")` } }
         />
       </Link>
