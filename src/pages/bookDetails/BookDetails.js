@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from 'components/Header';
 import ErrorDisplay from 'components/ErrorDisplay';
 import Loader from 'components/Loader';
-import { UnknownBook } from 'components/UnknownBook';
+import UnknownBook from 'components/UnknownBook';
 
 import { booksActions, booksSelectors, booksTypes } from 'state/modules/books';
 import { apiSelectors } from 'state/modules/api'
@@ -16,7 +16,10 @@ const resultsErrorSelector = apiSelectors.createErrorMessageSelector([booksTypes
 
 class BookDetails extends Component {
   static propTypes = {
-    book: PropTypes.object
+    book: PropTypes.object,
+    error: PropTypes.string,
+    loadBook: PropTypes.func,
+    isLoading: PropTypes.bool
   }
 
   componentDidMount() {
@@ -61,8 +64,9 @@ class BookDetails extends Component {
   }
 
   render () {
-    if(this.props.error) {
-      return <ErrorDisplay />;
+    const error = this.props.error;
+    if(error) {
+      return <ErrorDisplay error={ error } />;
     }
 
     if(this.props.isLoading) {

@@ -20,8 +20,8 @@ const BookListItem = function Book({ book }) {
             } } />
           </div>
           <div className="card-body col-6">
-            <h3 className={ styles.bookMeta }>{ author }</h3>
             <h3 className={ styles.bookMeta }>{ title }</h3>
+            <h4 className={ styles.bookMeta }>{ author }</h4>
             <p className={ styles.bookMeta }>{ category }</p>
           </div>
         </div>

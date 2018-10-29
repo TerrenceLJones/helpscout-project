@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from 'components/Header';
 import ErrorDisplay from 'components/ErrorDisplay';
 import Loader from 'components/Loader';
-import { UnknownBook } from 'components/UnknownBook';
+import UnknownBook from 'components/UnknownBook';
 import EditBookForm from 'components/bookForm';
 
 import { booksActions, booksSelectors, booksTypes } from 'state/modules/books';
@@ -17,7 +17,12 @@ const resultsErrorSelector = apiSelectors.createErrorMessageSelector([booksTypes
 
 class EditBook extends Component {
   static propTypes = {
-    book: PropTypes.object
+    book: PropTypes.object,
+    deleteBook: PropTypes.func,
+    error: PropTypes.string,
+    isLoading: PropTypes.bool,
+    loadBook: PropTypes.func,
+    updateBoo: PropTypes.func
   }
 
   componentDidMount() {
@@ -26,8 +31,8 @@ class EditBook extends Component {
 
   onSaveBook = (bookValues) => {
     this.props.updateBook(bookValues)
-      .then(({ payload: { data: newBook } }) => {
-        this.props.history.replace(`/books/${newBook.id}`);
+      .then(({ payload: { data: updatedBook } }) => {
+        this.props.history.replace(`/books/${updatedBook.id}`);
       });
   }
 
@@ -46,8 +51,10 @@ class EditBook extends Component {
   }
 
   render() {
-    if(this.props.error) {
-      return <ErrorDisplay />;
+    const error = this.props.error || this.props.saveError;
+
+    if(error) {
+      return <ErrorDisplay error={ error } />;
     }
 
     if(this.props.isLoading) {
@@ -79,9 +86,9 @@ const mapStateToProps = (state, ownProps) => {
     const book = booksSelectors.getBookSelector(state, bookId);
 
     return {
+      book,
       isLoading: book ? resultsLoadingSelector(state) : true,
-      loadError: resultsErrorSelector(state),
-      book
+      error: resultsErrorSelector(state),
     };
 };
 

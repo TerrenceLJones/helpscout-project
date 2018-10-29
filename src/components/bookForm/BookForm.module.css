@@ -1,39 +1,43 @@
-.bookImageContainer {
-    height: 350px;
+.container {
+    overflow: hidden;
 }
 
-.bookImage {
-    background-size: cover;
-    background-position: center center;
-    display: block !important;
-    height: 100%;
-    width: 100%;
+.imageContainer {
+  height: 350px;
+}
+
+.image {
+  background-size: cover;
+  background-position: center center;
+  display: block !important;
+  height: 100%;
+  width: 100%;
 }
 
 
-.bookImageAddButtonText {
-    display: block;
-    height: 100%;
-    margin: auto;
-    width: 100%;
+.buttonText {
+  display: block;
+  height: 100%;
+  margin: auto;
+  width: 100%;
 }
 
 .linkButton {
-    background-color: transparent;
-    border: none;
-    display: inline;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  background-color: transparent;
+  border: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 .linkButton:hover,
 .linkButton:focus {
-    cursor: pointer;
-    outline: none;
-    text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
 }
 
 .linkButton:hover {
-    color: blue
+  color: blue
 }

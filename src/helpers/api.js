@@ -22,7 +22,7 @@ const createBook = data => {
 const loadAll = () => {
   return new Promise((resolve, reject) => {
     const parsedData = JSON.parse(localStorage.getItem('bookData'));
-    setTimeout(() => resolve(parsedData), 2000)
+    setTimeout(() => resolve(parsedData), 1000)
   });
 }
 
@@ -33,14 +33,14 @@ const loadOne = id => {
     }
 
     const parsedBookData = JSON.parse(localStorage.getItem('bookData'));
-    const foundItem = parsedBookData.find(book => book.id === id);
+    const foundItem = _.find(parsedBookData, { id: id });
 
     setTimeout(() => {
       if(!foundItem) {
         reject('Not found.')
       }
       resolve(foundItem)
-    }, 2000)
+    }, 1000)
   });
 }
 
@@ -62,7 +62,7 @@ const updateBook = data => {
       localStorage.setItem('bookData', JSON.stringify(updatedData));
 
       resolve(updatedItem);
-    }, 2000)
+    }, 1000)
   });
 };
 
@@ -74,7 +74,7 @@ const deleteBook = id => {
     setTimeout(() => {
       localStorage.setItem('bookData', JSON.stringify({ ...filteredData }));
       resolve();
-    }, 2000)
+    }, 1000)
   });
 };
 

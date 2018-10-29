@@ -5,11 +5,20 @@ import { Link } from 'react-router-dom';
 
 import Header from 'components/Header';
 import CreateBookFrom from 'components/bookForm';
+import Loader from 'components/Loader';
+import ErrorDisplay from 'components/ErrorDisplay';
 
 import { booksActions } from 'state/modules/books';
 
-const CreateBook = ({ createBook, history }) => {
+import { booksTypes } from 'state/modules/books';
+import { apiSelectors } from 'state/modules/api'
 
+const processingSelector = apiSelectors.createLoadingSelector([booksTypes.LOAD_BOOKS_REQUEST, booksTypes.UPDATE_BOOK_REQUEST]);
+const errorSelector = apiSelectors.createErrorMessageSelector([booksTypes.LOAD_BOOKS_FAILURE, booksTypes.UPDATE_BOOK_FAILURE]);
+
+
+const CreateBook = (props) => {
+  const { createBook, error, history, isProccessing } = props;
   const onSubmit = (bookValues) => {
     createBook(bookValues)
       .then(({ payload: { data: newBook } }) => {
@@ -26,6 +35,14 @@ const CreateBook = ({ createBook, history }) => {
     );
   }
 
+  if(isProccessing) {
+    return <Loader />;
+  }
+
+  if(error) {
+    return <ErrorDisplay />;
+  }
+
   return (
     <main>
       { getHeader() }
@@ -39,7 +56,16 @@ const CreateBook = ({ createBook, history }) => {
 
 CreateBook.propTypes = {
   createBook: PropTypes.func,
-  history: PropTypes.object
+  error: PropTypes.string,
+  isProccessing: PropTypes.bool
+};
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+      isProccessing: processingSelector(state),
+      error: errorSelector(state),
+    };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -50,4 +76,4 @@ export {
   CreateBook
 }
 
-export default connect(null, mapDispatchToProps)(CreateBook);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBook);
