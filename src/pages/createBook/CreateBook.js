@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Header from 'components/Header';
 import CreateBookFrom from 'components/bookForm';
 
 import { booksActions } from 'state/modules/books';
 
 const CreateBook = ({ createBook, history }) => {
 
-  const handleSubmit = (bookValues) => {
+  const onSubmit = (bookValues) => {
     createBook(bookValues)
       .then(({ payload: { data: newBook } }) => {
         history.replace(`/books/${newBook.id}`);
@@ -18,19 +19,21 @@ const CreateBook = ({ createBook, history }) => {
 
   const getHeader = () => {
     return (
-      <header>
+      <Header>
         <h1>Create a New Book</h1>
-        <Link to={ `/books` }>Cancel</Link>
-      </header>
+        <Link className="btn btn-secondary" to="/books">Cancel</Link>
+      </Header>
     );
   }
 
   return (
-    <div>
+    <main>
       { getHeader() }
 
-      <CreateBookFrom handleSubmit={ handleSubmit } />
-    </div>
+      <div className="container">
+        <CreateBookFrom onSubmit={ onSubmit } />
+      </div>
+    </main>
   );
 }
 
