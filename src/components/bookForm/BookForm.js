@@ -84,12 +84,13 @@ const BookForm = class BookForm extends Component {
   getImagePreview = () => {
     const { imagePreviewUrl } = this.state;
     const backgroundImage = imagePreviewUrl || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
-    const imagePreviewClasses = classNames(styles.linkButton, styles.bookImage);
-    const imagePreviewButtonClasses = classNames(styles.linkButton, styles.bookImageAddButtonText);
+    const containerClasses = classNames(styles.container, 'card shadow-sm');
+    const imagePreviewClasses = classNames(styles.linkButton, styles.image);
+    const imagePreviewButtonClasses = classNames(styles.linkButton, styles.buttonText);
 
     return(
-      <div className="card shadow-sm">
-        <div className={ styles.bookImageContainer }>
+      <div className={ containerClasses }>
+        <div className={ styles.imageContainer }>
           <button
             style={ { backgroundImage: `url("${backgroundImage}")` } }
             className={ imagePreviewClasses }
