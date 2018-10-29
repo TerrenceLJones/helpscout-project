@@ -15,7 +15,6 @@ const ErrorDisplay = ({ error }) => {
         </div>
       </div>
     )
-
 };
 
 export default ErrorDisplay;
