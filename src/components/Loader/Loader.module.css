@@ -1,0 +1,11 @@
+.loaderContainer {
+  position: fixed;
+  z-index: 91000;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
