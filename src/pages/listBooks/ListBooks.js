@@ -138,7 +138,7 @@ class ListBooks extends Component {
     return (
       <Header>
         <h1>Book Library</h1>
-        <Link className="btn btn-success" to="/books/new">New book</Link>
+        <Link className="btn btn-success d-inline" to="/books/new">New book</Link>
       </Header>
     );
   }

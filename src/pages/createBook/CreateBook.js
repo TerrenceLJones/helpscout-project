@@ -30,7 +30,7 @@ const CreateBook = (props) => {
     return (
       <Header>
         <h1>Create a New Book</h1>
-        <Link className="btn btn-secondary" to="/books">Cancel</Link>
+        <Link className="btn btn-secondary d-inline" to="/books">Cancel</Link>
       </Header>
     );
   }

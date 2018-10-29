@@ -9,7 +9,7 @@ const NoMatch = () => {
           <h1>404</h1>
           <h3>Oops! Looks like something didn&#39;t work out according to plan.</h3>
           <p className="mt-3">
-            <Link className="btn btn-success" to="/books">Take me to my books List</Link>
+            <Link className="btn btn-success" to="/books">Take me to my book List</Link>
           </p>
         </div>
       </div>

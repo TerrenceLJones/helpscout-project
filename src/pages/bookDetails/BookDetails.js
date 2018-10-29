@@ -37,7 +37,7 @@ class BookDetails extends Component {
         <h1>Book Details</h1>
         <div>
           <Link className="btn btn-secondary mr-3 d-inline" to='/books'>All books</Link>
-          <Link className="btn btn-success" to={ `/books/${this.props.book.id}/edit` }>Edit book</Link>
+          <Link className="btn btn-success d-inline" to={ `/books/${this.props.book.id}/edit` }>Edit book</Link>
         </div>
       </Header>
     );

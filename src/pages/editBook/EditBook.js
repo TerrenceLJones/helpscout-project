@@ -45,7 +45,7 @@ class EditBook extends Component {
     return (
       <Header>
         <h1>Edit Book</h1>
-        <Link className="btn btn-secondary" to={ `/books/${this.props.book.id}` }>Cancel</Link>
+        <Link className="btn btn-secondary d-inline" to={ `/books/${this.props.book.id}` }>Cancel</Link>
       </Header>
     );
   }
