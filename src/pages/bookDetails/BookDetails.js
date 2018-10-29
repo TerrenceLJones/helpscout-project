@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Header from 'components/Header';
 import ErrorDisplay from 'components/ErrorDisplay';
 import Loader from 'components/Loader';
 import { UnknownBook } from 'components/UnknownBook';
@@ -22,6 +23,43 @@ class BookDetails extends Component {
       this.props.loadBook();
   }
 
+  getHeader() {
+    return (
+      <Header>
+        <h1>Book Details</h1>
+        <div>
+          <Link className="btn btn-secondary mr-3" to='/books'>All books</Link>
+          <Link className="btn btn-success" to={ `/books/${this.props.book.id}/edit` }>Edit book</Link>
+        </div>
+      </Header>
+    );
+  }
+
+  getBookDetails = () => {
+    const { category, author, image, title } = this.props.book;
+    const backgroundImage = image || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
+
+    return (
+      <div className="row">
+        <div className="col-6" style={ { height: '400px' } }>
+          <div style={ {
+            backgroundImage: `url("${backgroundImage}")`,
+            backgroundSize: 'cover',
+            display: 'block',
+            height: '100%'
+          } } />
+        </div>
+        <div className="col-6">
+          <h3>{ title }</h3>
+          <p>{ author }</p>
+          <p>{ category }</p>
+        </div>
+      </div>
+
+
+    );
+  }
+
   render () {
     if(this.props.error) {
       return <ErrorDisplay />;
@@ -35,20 +73,13 @@ class BookDetails extends Component {
       return <UnknownBook />;
     }
 
-    const { category, id, image, title } = this.props.book;
-
     return (
-      <div>
-        <div>
-          <h1>Book Details</h1>
-          <Link to='/books'>All books</Link>
-          <Link to={ `/books/${id}/edit` }>Edit book</Link>
-
-          <h3>{ title }</h3>
-          <p>{ category }</p>
-          <img src={ image } alt="Your book&#39;s cover."/>
+      <React.Fragment>
+        { this.getHeader() }
+        <div className="container">
+          { this.getBookDetails() }
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
