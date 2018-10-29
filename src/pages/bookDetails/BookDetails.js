@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames'
 
 import Header from 'components/Header';
 import ErrorDisplay from 'components/ErrorDisplay';
@@ -10,6 +11,10 @@ import UnknownBook from 'components/UnknownBook';
 
 import { booksActions, booksSelectors, booksTypes } from 'state/modules/books';
 import { apiSelectors } from 'state/modules/api'
+
+import { getPlaceHolderImageUrl } from 'helpers/placeHolderImage';
+
+import styles from './BookDetails.module.css';
 
 const resultsLoadingSelector = apiSelectors.createLoadingSelector([booksTypes.LOAD_BOOKS_REQUEST]);
 const resultsErrorSelector = apiSelectors.createErrorMessageSelector([booksTypes.LOAD_BOOKS_FAILURE]);
@@ -40,17 +45,18 @@ class BookDetails extends Component {
 
   getBookDetails = () => {
     const { category, author, image, title } = this.props.book;
-    const backgroundImage = image || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
+    const backgroundImage = image || getPlaceHolderImageUrl(title);
+    const imageContainerStyles = classNames(styles.imageContainer, 'card shadow-sm"');
 
     return (
       <div className="row">
-        <div className="col-6" style={ { height: '400px' } }>
-          <div style={ {
-            backgroundImage: `url("${backgroundImage}")`,
-            backgroundSize: 'cover',
-            display: 'block',
-            height: '100%'
-          } } />
+        <div className="col-6">
+          <div className={ imageContainerStyles }>
+            <div
+              className={ styles.image }
+              style={ { backgroundImage: `url("${backgroundImage}")`} }
+            />
+          </div>
         </div>
         <div className="col-6">
           <h3>{ title }</h3>
@@ -58,8 +64,6 @@ class BookDetails extends Component {
           <p>{ category }</p>
         </div>
       </div>
-
-
     );
   }
 
