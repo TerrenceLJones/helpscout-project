@@ -73,7 +73,7 @@ class ListBooks extends Component {
 
     books.forEach(({ category }) => {
       // Prevent duplicate filters being added to filterOptions array.
-      const existingFilter = _.find(filterOptions, { id: category });
+      const existingFilter = _.find(filterOptions, { id: category.toLowerCase() });
       if(existingFilter) {
         return;
       }
@@ -181,16 +181,13 @@ class ListBooks extends Component {
   }
 
   getBooks = (filteredBooks) => {
-    const isGrid = this.state.viewType === 'grid';
     const bookItems = filteredBooks.map(book => {
-      return isGrid ?
+      return this.state.viewType === 'grid' ?
         <BookGridItem key={ book.id } book={ book }/> :
         <BookListItem key={ book.id } book={ book }/>
     });
-    const classes = classNames(styles.books, {
-      'd-flex': isGrid,
-      'row': !isGrid
-    });
+
+    const classes = classNames(styles.books, 'row');
 
     return (
       <div className="py-3">
