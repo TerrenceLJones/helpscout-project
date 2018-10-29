@@ -15,7 +15,6 @@ const BookGridItem = function Book({ book }) {
           className={ styles.bookGridItemImage }
           style={ { backgroundImage: `url("${backgroundImage}")` } }
         />
-        <h3>{ title }</h3>
       </Link>
     </li>
   )
