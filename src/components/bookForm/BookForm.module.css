@@ -1,0 +1,39 @@
+.bookImageContainer {
+    height: 350px;
+}
+
+.bookImage {
+    background-size: cover;
+    background-position: center center;
+    display: block !important;
+    height: 100%;
+    width: 100%;
+}
+
+
+.bookImageAddButtonText {
+    display: block;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+}
+
+.linkButton {
+    background-color: transparent;
+    border: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.linkButton:hover,
+.linkButton:focus {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+.linkButton:hover {
+    color: blue
+}

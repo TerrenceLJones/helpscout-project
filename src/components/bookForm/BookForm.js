@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
+import styles from 'components/bookForm/BookForm.module.css';
 
 const BookForm = class BookForm extends Component {
   static propTypes = {
     book: PropTypes.object,
-    handleSubmit: PropTypes.func.isRequired,
-    handleDelete: PropTypes.func
+    onSubmit: PropTypes.func.isRequired,
+    ondDelete: PropTypes.func
   }
 
   state = {
+    author: '',
     category: '',
     id: '',
     image: '',
@@ -16,11 +20,18 @@ const BookForm = class BookForm extends Component {
     title: ''
   }
 
+  constructor(props) {
+    super(props)
+
+    this.imageUploaderRef = React.createRef();
+  }
+
   componentDidMount() {
     const { book } = this.props;
 
     if(book) {
       this.setState({
+        author: book.author,
         category: book.category,
         id: book.id,
         image: book.image,
@@ -30,12 +41,24 @@ const BookForm = class BookForm extends Component {
     }
   }
 
+  handleAuthorChange = ({ target: { value } }) => {
+    this.setState({ author: value })
+  }
+
   handleTitleChange = ({ target: { value } }) => {
     this.setState({ title: value })
   }
 
   handleCategoryChange = ({ target: { value } }) => {
     this.setState({ category: value })
+  }
+
+  handleAddBookCover = () => {
+    const node = this.imageUploaderRef.current;
+
+    if(node) {
+      node.click();
+    }
   }
 
   handleImageChange = ({ target: { files } }) => {
@@ -52,28 +75,56 @@ const BookForm = class BookForm extends Component {
     reader.readAsDataURL(file)
   }
 
-  onSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.handleSubmit(this.state);
+    this.props.onSubmit(this.state);
   }
 
   getImagePreview = () => {
-    let { imagePreviewUrl } = this.state;
+    const { imagePreviewUrl } = this.state;
+    const backgroundImage = imagePreviewUrl || 'https://dummyimage.com/448x400/000/fff.png&text=Add+a+Book+Cover';
+    const imagePreviewClasses = classNames(styles.linkButton, styles.bookImage);
+    const imagePreviewButtonClasses = classNames(styles.linkButton, styles.bookImageAddButtonText);
 
-    if (!imagePreviewUrl) {
-      return <div>Please select an Image for Preview</div>;
-    }
+    return(
+      <div className="card shadow-sm">
+        <div className={ styles.bookImageContainer }>
+          <button
+            style={ { backgroundImage: `url("${backgroundImage}")` } }
+            className={ imagePreviewClasses }
+            type="button"
+            onClick={ this.handleAddBookCover }
+          />
+        </div>
 
-    return <img src={ imagePreviewUrl } alt="Your book&#39;s cover."/>;
+        <div className="card-body">
+          <input
+            accept="image/*"
+            className={ styles.bookImageAddButton }
+            id="image"
+            onChange={ this.handleImageChange }
+            ref={ this.imageUploaderRef }
+            style={ { display: 'none' } }
+            type="file"
+          />
+
+          <button
+            className={ imagePreviewButtonClasses }
+            type="button"
+            onClick={ this.handleAddBookCover }
+          >
+            Add Book Cover
+          </button>
+        </div>
+      </div>
+    );
   }
 
   getSaveButton() {
-    if(!this.state.id) {
-      return <button type="submit">Create</button>;
-    }
+    const text = this.state.id ? 'Save' : 'Create'
 
-    return <button type="submit">Save</button>;
+    return <button className="btn btn-success btn-block" type="submit">{ text }</button>;
   }
 
   getDeleteButton() {
@@ -83,8 +134,9 @@ const BookForm = class BookForm extends Component {
 
     return (
       <button
+        className="btn btn-danger btn-block"
         type="button"
-        onClick={ () => this.props.handleDelete(this.state.id) }>
+        onClick={ () => this.props.onDelete(this.state.id) }>
         Delete
       </button>);
   }
@@ -92,35 +144,51 @@ const BookForm = class BookForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={ this.onSubmit }>
+        <form onSubmit={ this.handleSubmit }>
 
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            onChange={ this.handleTitleChange }
-            type="text"
-            value={ this.state.title }
-          />
+          <div className="row mb-4">
+            <div className="col-md-6 mb-4">
+              { this.getImagePreview() }
+            </div>
 
-          <label htmlFor="category">Category</label>
-          <input type="text"
-            id="category"
-            onChange={ this.handleCategoryChange }
-            value={ this.state.category }
-          />
+            <div className="col-md-6">
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={ this.handleTitleChange }
+                  type="text"
+                  value={ this.state.title }
+                />
+              </div>
 
-          { this.getImagePreview() }
+              <div className="form-group">
+                <label htmlFor="title">Author</label>
+                <input
+                  className="form-control"
+                  id="title"
+                  onChange={ this.handleAuthorChange }
+                  type="text"
+                  value={ this.state.author }
+                />
+              </div>
 
-          <input
-            accept="image/*"
-            id="image"
-            onChange={ this.handleImageChange }
-            type="file"
-          />
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <input type="text"
+                  className="form-control"
+                  id="category"
+                  onChange={ this.handleCategoryChange }
+                  value={ this.state.category }
+                />
+              </div>
 
-          { this.getSaveButton() }
+              { this.getSaveButton() }
+              { this.getDeleteButton() }
 
-          { this.getDeleteButton() }
+            </div>
+          </div>
         </form>
       </div>
     );
