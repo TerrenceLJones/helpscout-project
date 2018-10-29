@@ -170,7 +170,7 @@ const selectors = {
     return bookIds.map((id) => booksByIdState[id]);
   },
   getFilteredBooks(books, filterCategory) {
-    if(!filterCategory) {
+    if(!filterCategory || filterCategory === 'reset') {
       return books;
     }
 
