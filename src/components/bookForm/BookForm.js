@@ -105,11 +105,10 @@ const BookForm = class BookForm extends Component {
         <div className="card-body">
           <input
             accept="image/*"
-            className={ styles.bookImageAddButton }
+            className={ styles.hiddenImageAddButton }
             id="image"
             onChange={ this.handleImageChange }
             ref={ this.imageUploaderRef }
-            style={ { display: 'none' } }
             type="file"
           />
 

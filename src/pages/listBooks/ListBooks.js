@@ -84,7 +84,7 @@ class ListBooks extends Component {
     });
 
     return {
-      categoryFilterOptions: filterOptions,
+      categoryFilterOptions: _.sortBy(filterOptions, 'id'),
       bookCategoryFilter,
       sortDirection,
       sortBy,
@@ -154,7 +154,7 @@ class ListBooks extends Component {
 
         <ListSelector
           classNames="col-md-4"
-          defaultOptionText="None"
+          defaultOptionText="All"
           label="Category Filter"
           onChangeHandler={ this.onCategoryFilterChange }
           options={ this.state.categoryFilterOptions }

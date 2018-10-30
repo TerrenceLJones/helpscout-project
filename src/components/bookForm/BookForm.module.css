@@ -16,6 +16,10 @@
   width: 100%;
 }
 
+.hiddenImageAddButton {
+  display: none;
+}
+
 
 .buttonText {
   display: block;
